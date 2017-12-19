@@ -33,13 +33,6 @@
 ** minilibx
 */
 
-float	vec_lenght(t_name struc);
-t_name	vec_normalizing(t_name struc, float lenght);
-t_name	vec_cross(t_name a, t_name b);
-t_name	vec_add(t_name a, t_name b);
-t_name	vec_sub(t_name a, t_name b);
-float	vec_mult(t_name a, t_name b);
-
 typedef	struct	s_name
 {
 	float width;
@@ -47,5 +40,12 @@ typedef	struct	s_name
 	float y;
 	float z;
 }				t_name;
+
+float	vec_lenght(t_name struc);
+t_name	vec_normalizing(t_name struc, float lenght);
+t_name	vec_cross(t_name a, t_name b);
+t_name	vec_add(t_name a, t_name b);
+t_name	vec_sub(t_name a, t_name b);
+float	vec_mult(t_name a, t_name b);
 
 #endif

@@ -12,6 +12,8 @@
 
 #include "header.h"
 
+void tests();
+
 float	vec_lenght(t_name struc)
 {
 	return (sqrt(struc.x * struc.x +
@@ -73,7 +75,40 @@ float	vec_mult(t_name a, t_name b)
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
+int my_key_funct(int keycode, void *param)
+{
+	if (keycode == 53)
+		exit(1);
+	printf("key event %d\n", keycode);
+	return (0);
+}
+
 int		main(int argc, char const *argv[])
+{
+	void *mlx;
+	void *win;
+	int width = 400;
+	int height = 400;
+	int x = 100;
+	int y = 100;
+
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, width, height, "tipa fdf");
+	while (x < width / 2)
+	{
+		mlx_pixel_put(mlx, win, x, y, 0xFFFFFF);
+		x++;
+		y++;
+	}
+	mlx_key_hook(win, my_key_funct, 0);
+	mlx_loop(mlx);
+
+	//tests();
+
+	return (0);
+}
+
+void tests()
 {
 	t_name struc;
 	float lenght;
@@ -106,6 +141,4 @@ int		main(int argc, char const *argv[])
 	printf("✅ sub: x, y, z: %.0f %.0f %.0f\n", c.x, c.y, c.z);
 	res = vec_mult(a, b);
 	printf("✅ mult: %.0f\n", res);
-
-	return (0);
 }
