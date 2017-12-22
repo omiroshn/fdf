@@ -14,6 +14,60 @@
 
 void tests();
 
+static int lenth_of_fdf(char *filename) //doone
+{
+	int		fd;
+	char	*lol;
+	int		lenght;
+
+	lenght = 0;
+	if ((fd = open(filename, O_RDONLY)) == -1)
+	{
+		ft_putstr("Error opening file.\n");
+		exit(-1);
+	}
+	while (get_next_line(fd, &lol) > 0)
+	{
+		lenght++;
+		free(lol);
+		lol = NULL; 
+	}
+	close(fd);
+	return (lenght);
+}
+
+void read_func(char **argv)
+{
+	int		i;
+	int		j;
+	int		fd;
+	char	*string;
+	char	**splitted;
+	int		**numbers = NULL;
+	int		lines = 0;
+	char 	*lol;
+
+	j = 0;
+	lines = lenth_of_fdf(argv[1]);
+	if (!(fd = open(argv[1], O_RDONLY)))
+		return ;
+	while (j < lines)
+	{
+		i = 0;
+		get_next_line(fd, &lol);
+		splitted = ft_strsplit(string, ' ');
+		//numbers = (int *)malloc(sizeof(int *) * 30);
+		while (splitted[i])
+		{
+			//numbers[i] = (int)malloc(sizeof(int) * lines);
+			numbers[j][i] = ft_atoi(splitted[i]);
+			//printf("%i", numbers[i++]);
+		}
+		printf("\n");
+		j++;
+	}
+}
+
 int my_key_funct(int keycode, void *param)
 {
 	int speed;
@@ -43,20 +97,22 @@ int my_key_funct(int keycode, void *param)
 	return (0);
 }
 
-int		main(int argc, char const *argv[])
+int		main(int argc, char **argv)
 {
 	t_system	sys;
 	
 	sys.vec.x = 100;
 	sys.vec.y = 100;
 
-	sys.mlx = mlx_init();
-	sys.win = mlx_new_window(sys.mlx, WIDTH, HEIGHT, "tipa fdf");
-	mlx_pixel_put(sys.mlx, sys.win, sys.vec.x, sys.vec.y, 0xFFFFFF);
-	mlx_hook(sys.win, 2, 2, my_key_funct, &sys);
-	mlx_loop(sys.mlx);
+	//sys.mlx = mlx_init();
+	// sys.win = mlx_new_window(sys.mlx, WIDTH, HEIGHT, "tipa fdf");
+	read_func(argv);
+	// mlx_pixel_put(sys.mlx, sys.win, sys.vec.x, sys.vec.y, 0xFFFFFF);
+	// mlx_hook(sys.win, 2, 2, my_key_funct, &sys);
+	// mlx_loop(sys.mlx);
 
 	//tests();
+	argc++;
 	return (0);
 }
 

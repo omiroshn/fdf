@@ -12,9 +12,11 @@
 
 #ifndef HEADER_H
 # define HEADER_H
+
 # define WIDTH 400
 # define HEIGHT 400
 
+# include "libft/includes/libft.h"
 # include <math.h>
 # include <fcntl.h>
 # include <sys/uio.h>
@@ -70,8 +72,8 @@ t_vec		vec_cross(t_vec a, t_vec b);
 t_vec		vec_add(t_vec a, t_vec b);
 t_vec		vec_sub(t_vec a, t_vec b);
 float		vec_mult(t_vec a, t_vec b);
-t_matrix4	matrix_mult(const t_matrix4 m, const t_matrix4 rhs)
-t_vec		vec_matrix_mult(const t_vec vec, const t_matrix4 rhs)
-int			my_key_funct(int keycode, void *param)
+t_matrix4	matrix_mult(const t_matrix4 m, const t_matrix4 rhs);
+t_vec		vec_matrix_mult(const t_vec vec, const t_matrix4 rhs);
+int			my_key_funct(int keycode, void *param);
 
 #endif
