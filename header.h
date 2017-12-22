@@ -45,8 +45,6 @@ typedef	struct	s_vec
 	float w;
 }				t_vec;
 
-//typedef float[4][4] t_matrix;
-
 typedef	struct	s_matrix3
 {
 	float	m[3][3];
@@ -59,12 +57,14 @@ typedef	struct	s_matrix4
 	t_vec	vec;
 }				t_matrix4;
 
-typedef	struct	s_system
+typedef	struct	s_mapinfo
 {
 	t_vec	vec;
+	int		lines;
+	char	**map;
 	void	*mlx;
 	void	*win;
-}				t_system;
+}				t_mapinfo;
 
 float		vec_lenght(t_vec struc);
 t_vec		vec_normalizing(t_vec struc, float lenght);

@@ -36,47 +36,49 @@ static int lenth_of_fdf(char *filename) //doone
 	return (lenght);
 }
 
-void read_func(char **argv)
+t_mapinfo read_func(char **argv)
 {
+	t_mapinfo file;
 	int		i;
 	int		j;
 	int		fd;
-	char	*string;
-	char	**splitted;
 	int		**numbers = NULL;
-	int		lines = 0;
 	char 	*lol;
 
 	j = 0;
-	lines = lenth_of_fdf(argv[1]);
+
+	file.lines = 0;
+	file.map = NULL;
 	if (!(fd = open(argv[1], O_RDONLY)))
-		return ;
-	while (j < lines)
+		return (file);
+	file.lines = lenth_of_fdf(argv[1]);
+	file.map = (char **)malloc(sizeof(char **) * file.lines);
+	while (j < file.lines)
 	{
 		i = 0;
 		get_next_line(fd, &lol);
-		splitted = ft_strsplit(string, ' ');
-		//numbers = (int *)malloc(sizeof(int *) * 30);
-		while (splitted[i])
+		file.map = ft_strsplit(lol, ' ');
+		while (file.map[i])
 		{
 			//numbers[i] = (int)malloc(sizeof(int) * lines);
-			numbers[j][i] = ft_atoi(splitted[i]);
+			numbers[j][i] = ft_atoi(file.map[i]);
 			//printf("%i", numbers[i++]);
 		}
 		printf("\n");
 		j++;
 	}
+	return (file);
 }
 
 int my_key_funct(int keycode, void *param)
 {
 	int speed;
 	int i;
-	t_system *sys;
+	t_mapinfo *sys;
 	
 	i = 0;
 	speed = 10;
-	sys = (t_system *)param;
+	sys = (t_mapinfo *)param;
 	mlx_clear_window(sys->mlx, sys->win);
 	if (keycode == 53)
 		exit(0);
@@ -99,17 +101,17 @@ int my_key_funct(int keycode, void *param)
 
 int		main(int argc, char **argv)
 {
-	t_system	sys;
+	t_mapinfo	sys;
 	
 	sys.vec.x = 100;
 	sys.vec.y = 100;
 
-	//sys.mlx = mlx_init();
-	// sys.win = mlx_new_window(sys.mlx, WIDTH, HEIGHT, "tipa fdf");
-	read_func(argv);
-	// mlx_pixel_put(sys.mlx, sys.win, sys.vec.x, sys.vec.y, 0xFFFFFF);
-	// mlx_hook(sys.win, 2, 2, my_key_funct, &sys);
-	// mlx_loop(sys.mlx);
+	sys.mlx = mlx_init();
+	sys.win = mlx_new_window(sys.mlx, WIDTH, HEIGHT, "tipa fdf");
+	sys = read_func(argv);
+	mlx_pixel_put(sys.mlx, sys.win, sys.vec.x, sys.vec.y, 0xFFFFFF);
+	mlx_hook(sys.win, 2, 2, my_key_funct, &sys);
+	mlx_loop(sys.mlx);
 
 	//tests();
 	argc++;
