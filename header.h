@@ -12,6 +12,8 @@
 
 #ifndef HEADER_H
 # define HEADER_H
+# define WIDTH 400
+# define HEIGHT 400
 
 # include <math.h>
 # include <fcntl.h>
@@ -33,19 +35,43 @@
 ** minilibx
 */
 
-typedef	struct	s_name
+typedef	struct	s_vec
 {
-	float width;
 	float x;
 	float y;
 	float z;
-}				t_name;
+	float w;
+}				t_vec;
 
-float	vec_lenght(t_name struc);
-t_name	vec_normalizing(t_name struc, float lenght);
-t_name	vec_cross(t_name a, t_name b);
-t_name	vec_add(t_name a, t_name b);
-t_name	vec_sub(t_name a, t_name b);
-float	vec_mult(t_name a, t_name b);
+//typedef float[4][4] t_matrix;
+
+typedef	struct	s_matrix3
+{
+	float	m[3][3];
+	t_vec	vec;
+}				t_matrix3;
+
+typedef	struct	s_matrix4
+{
+	float	m[4][4];
+	t_vec	vec;
+}				t_matrix4;
+
+typedef	struct	s_system
+{
+	t_vec	vec;
+	void	*mlx;
+	void	*win;
+}				t_system;
+
+float		vec_lenght(t_vec struc);
+t_vec		vec_normalizing(t_vec struc, float lenght);
+t_vec		vec_cross(t_vec a, t_vec b);
+t_vec		vec_add(t_vec a, t_vec b);
+t_vec		vec_sub(t_vec a, t_vec b);
+float		vec_mult(t_vec a, t_vec b);
+t_matrix4	matrix_mult(const t_matrix4 m, const t_matrix4 rhs)
+t_vec		vec_matrix_mult(const t_vec vec, const t_matrix4 rhs)
+int			my_key_funct(int keycode, void *param)
 
 #endif

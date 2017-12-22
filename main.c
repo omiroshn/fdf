@@ -14,131 +14,118 @@
 
 void tests();
 
-float	vec_lenght(t_name struc)
-{
-	return (sqrt(struc.x * struc.x +
-		struc.y * struc.y + struc.z * struc.z));
-}
-
-t_name	vec_normalizing(t_name struc, float lenght)
-{
-	float invlen;
-
-	invlen = 0;
-	if (lenght > 0)
-	{
-		invlen = 1 / lenght;
-		struc.x *= invlen;
-		struc.y *= invlen;
-		struc.z *= invlen;
-	}
-	return (struc);
-}
-
-/*
-** Returning an orthogonal vector (перпендикулярный)
-** в основном используется для создания системы координат
-** pseudo vector
-*/
-t_name	vec_cross(t_name a, t_name b)
-{
-	t_name c;
-
-	c.x = a.y * b.z - a.z * b.y;
-	c.y = a.z * b.x - a.x * b.z;
-	c.z = a.x * b.y - a.y * b.x;
-	return (c);
-}
-
-t_name	vec_add(t_name a, t_name b)
-{
-	t_name c;
-
-	c.x = a.x + b.x;
-	c.y = a.y + b.y;
-	c.z = a.z + b.z;
-	return (c);
-}
-
-t_name	vec_sub(t_name a, t_name b)
-{
-	t_name c;
-
-	c.x = a.x - b.x;
-	c.y = a.y - b.y;
-	c.z = a.z - b.z;
-	return (c);
-}
-
-float	vec_mult(t_name a, t_name b)
-{
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
-}
-
 int my_key_funct(int keycode, void *param)
 {
+	int speed;
+	int i;
+	t_system *sys;
+	
+	i = 0;
+	speed = 10;
+	sys = (t_system *)param;
+	mlx_clear_window(sys->mlx, sys->win);
 	if (keycode == 53)
-		exit(1);
-	printf("key event %d\n", keycode);
+		exit(0);
+	else if (keycode == 124)
+		sys->vec.x = sys->vec.x + speed;
+	else if (keycode == 123)
+		sys->vec.x = sys->vec.x - speed;
+	else if (keycode == 126)
+		sys->vec.y = sys->vec.y - speed;
+	else if (keycode == 125)
+		sys->vec.y = sys->vec.y + speed;
+	while (i < 50)
+	{
+		mlx_pixel_put(sys->mlx, sys->win, sys->vec.x + i, sys->vec.y, 0xFFFFFF);
+		i++;
+	}
+	//printf("key event %d\n", keycode);
 	return (0);
 }
 
 int		main(int argc, char const *argv[])
 {
-	void *mlx;
-	void *win;
-	int width = 400;
-	int height = 400;
-	int x = 100;
-	int y = 100;
+	t_system	sys;
+	
+	sys.vec.x = 100;
+	sys.vec.y = 100;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, width, height, "tipa fdf");
-	while (x < width / 2)
-	{
-		mlx_pixel_put(mlx, win, x, y, 0xFFFFFF);
-		x++;
-		y++;
-	}
-	mlx_key_hook(win, my_key_funct, 0);
-	mlx_loop(mlx);
+	sys.mlx = mlx_init();
+	sys.win = mlx_new_window(sys.mlx, WIDTH, HEIGHT, "tipa fdf");
+	mlx_pixel_put(sys.mlx, sys.win, sys.vec.x, sys.vec.y, 0xFFFFFF);
+	mlx_hook(sys.win, 2, 2, my_key_funct, &sys);
+	mlx_loop(sys.mlx);
 
 	//tests();
-
 	return (0);
 }
 
 void tests()
 {
-	t_name struc;
-	float lenght;
-	float res;
+	// t_vec struc;
+	// float lenght;
+	// float res;
 
-	struc.x = 3;
-	struc.y = 1;
-	struc.z = -2;
-	lenght = vec_lenght(struc);
-	struc = vec_normalizing(struc, lenght);
-	printf("✅ lenght: %f\n", lenght);
-	printf("✅ norm: x, y, z: %f %f %f\n", struc.x, struc.y, struc.z);
+	// struc.x = 3;
+	// struc.y = 1;
+	// struc.z = -2;
+	// lenght = vec_lenght(struc);
+	// struc = vec_normalizing(struc, lenght);
+	// printf("✅ lenght: %f\n", lenght);
+	// printf("✅ norm: x, y, z: %f %f %f\n", struc.x, struc.y, struc.z);
 
-	t_name a;
-	t_name b;
-	t_name c;
+	// t_vec a;
+	// t_vec b;
+	// t_vec c;
 
-	a.x = 3;
-	a.y = -3;
-	a.z = 1;
+	// a.x = 3;
+	// a.y = -3;
+	// a.z = 1;
 
-	b.x = -12;
-	b.y = 12;
-	b.z = -4;
-	c = vec_cross(a, b);
-	printf("✅ cross: x, y, z: %.0f %.0f %.0f\n", c.x, c.y, c.z);
-	c = vec_add(a, b);
-	printf("✅ add: x, y, z: %.0f %.0f %.0f\n", c.x, c.y, c.z);
-	c = vec_sub(a, b);
-	printf("✅ sub: x, y, z: %.0f %.0f %.0f\n", c.x, c.y, c.z);
-	res = vec_mult(a, b);
-	printf("✅ mult: %.0f\n", res);
+	// b.x = -12;
+	// b.y = 12;
+	// b.z = -4;
+	// c = vec_crossproduct(a, b);
+	// printf("✅ cross: x, y, z: %.0f %.0f %.0f\n", c.x, c.y, c.z);
+	// c = vec_add(a, b);
+	// printf("✅ add: x, y, z: %.0f %.0f %.0f\n", c.x, c.y, c.z);
+	// c = vec_sub(a, b);
+	// printf("✅ sub: x, y, z: %.0f %.0f %.0f\n", c.x, c.y, c.z);
+	// res = vec_mult(a, b);
+	// printf("✅ mult: %.0f\n", res);
+
+	//тесты матриц
+	// t_matrix4 res;
+	// t_matrix4 rhs = {{
+	// 	{1, 2, 3, 4},
+	// 	{1, 2, 3, 4},
+	// 	{1, 2, 3, 4},
+	// 	{1, 2, 3, 4}
+	// }};
+	// res = matrix_mult(rhs, rhs);
+	// for (int i = 0; i < 4; ++i)
+	// {
+	// 	for (int j = 0; j < 4; ++j)
+	// 	{
+	// 		printf("%0.f ", res.m[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
+
+	// t_vec vec;
+	// t_vec res;
+	// vec.x = 1;
+	// vec.y = 2;
+	// vec.z = 3;
+	// vec.w = 1;
+
+	// t_matrix4 rhs = {{
+	// 	{1, 2, 3, 4},
+	// 	{1, 2, 3, 4},
+	// 	{1, 2, 3, 4},
+	// 	{1, 2, 3, 4}
+	// }};
+
+	// res = vec_matrix_mult(vec, rhs);
+	// printf("vec_matrix_mult: x, y, z, w: %f %f %f %f\n", res.x, res.y, res.z, res.w);
 }
