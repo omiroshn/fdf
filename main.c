@@ -14,85 +14,34 @@
 
 void tests();
 
-static int lenth_of_fdf(char *filename) //doone
-{
-	int		fd;
-	char	*lol;
-	int		lenght;
-
-	lenght = 0;
-	if ((fd = open(filename, O_RDONLY)) == -1)
-	{
-		ft_putstr("Error opening file.\n");
-		exit(-1);
-	}
-	while (get_next_line(fd, &lol) > 0)
-	{
-		lenght++;
-		free(lol);
-		lol = NULL; 
-	}
-	close(fd);
-	return (lenght);
-}
-
-t_mapinfo read_func(char **argv)
-{
-	t_mapinfo file;
-	int		i;
-	int		j;
-	int		fd;
-	int		**numbers = NULL;
-	char 	*lol;
-
-	j = 0;
-
-	file.lines = 0;
-	file.map = NULL;
-	if (!(fd = open(argv[1], O_RDONLY)))
-		return (file);
-	file.lines = lenth_of_fdf(argv[1]);
-	file.map = (char **)malloc(sizeof(char **) * file.lines);
-	while (j < file.lines)
-	{
-		i = 0;
-		get_next_line(fd, &lol);
-		file.map = ft_strsplit(lol, ' ');
-		while (file.map[i])
-		{
-			//numbers[i] = (int)malloc(sizeof(int) * lines);
-			numbers[j][i] = ft_atoi(file.map[i]);
-			//printf("%i", numbers[i++]);
-		}
-		printf("\n");
-		j++;
-	}
-	return (file);
-}
-
 int my_key_funct(int keycode, void *param)
 {
-	int speed;
-	int i;
-	t_mapinfo *sys;
-	
-	i = 0;
-	speed = 10;
-	sys = (t_mapinfo *)param;
-	mlx_clear_window(sys->mlx, sys->win);
-	if (keycode == 53)
+	int			speed;
+	int			i;
+	t_mapinfo	*map;
+	int triangle_amount;
+	int radius = 20;
+	speed = 20;
+	triangle_amount = 200;
+	map = (t_mapinfo *)param;
+	mlx_clear_window(map->mlx, map->win);
+	if (keycode == 65307)
 		exit(0);
-	else if (keycode == 124)
-		sys->vec.x = sys->vec.x + speed;
-	else if (keycode == 123)
-		sys->vec.x = sys->vec.x - speed;
-	else if (keycode == 126)
-		sys->vec.y = sys->vec.y - speed;
-	else if (keycode == 125)
-		sys->vec.y = sys->vec.y + speed;
-	while (i < 50)
+	else if (keycode == 65363)
+		map->vec->x = map->vec->x + speed;
+	else if (keycode == 65361)
+		map->vec->x = map->vec->x - speed;
+	else if (keycode == 65362)
+		map->vec->y = map->vec->y - speed;
+	else if (keycode == 65364)
+		map->vec->y = map->vec->y + speed;
+	i = 0;
+	while (i < triangle_amount)
 	{
-		mlx_pixel_put(sys->mlx, sys->win, sys->vec.x + i, sys->vec.y, 0xFFFFFF);
+		mlx_pixel_put(map->mlx, map->win,
+			map->vec->x + (radius * cos(i * DWA_PI / triangle_amount)),
+			map->vec->y + (radius * sin(i * DWA_PI / triangle_amount)),
+			0xFFFFFF);
 		i++;
 	}
 	//printf("key event %d\n", keycode);
@@ -101,20 +50,21 @@ int my_key_funct(int keycode, void *param)
 
 int		main(int argc, char **argv)
 {
-	t_mapinfo	sys;
-	
-	sys.vec.x = 100;
-	sys.vec.y = 100;
+	t_mapinfo	map;
 
-	sys.mlx = mlx_init();
-	sys.win = mlx_new_window(sys.mlx, WIDTH, HEIGHT, "tipa fdf");
-	sys = read_func(argv);
-	mlx_pixel_put(sys.mlx, sys.win, sys.vec.x, sys.vec.y, 0xFFFFFF);
-	mlx_hook(sys.win, 2, 2, my_key_funct, &sys);
-	mlx_loop(sys.mlx);
+	if (argc != 2)
+		ft_putstr("Usage : ./fdf <filename>\n");
+	else
+	{
+		//check_content(argv);
+		render(&map);
+		read_func(argv, &map);
+		draw(&map);
+		mlx_hook(map.win, 2, 5, my_key_funct, &map);
+		mlx_loop(map.mlx);
 
-	//tests();
-	argc++;
+		//tests();
+	}
 	return (0);
 }
 

@@ -1,14 +1,17 @@
 CC = gcc
-FILES = main matrix_func
+FILES = main matrix_func transform init read render draw
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addprefix obj/, $(addsuffix .o, $(FILES)))
-FLAGS = -Wall -Wextra -Werror
+DEBUG = -g
+FLAGS = 
+CGFLAGS_LYNUX = -lm -lmlx -lXext -lX11
+CGFLAGS_MAC = -lmlx -framework OpenGL -framework AppKit
 NAME = mlx
 
 all: $(NAME)
 
 $(NAME): $(OBJ) libft/libft.a
-	$(CC) -o $(NAME) $(SRC) $(FLAGS) -lmlx -framework OpenGL -framework AppKit libft/libft.a
+	$(CC) -o $(NAME) $(SRC) $(FLAGS) $(DEBUG) $(CGFLAGS_LYNUX) libft/libft.a
 
 libft/libft.a:
 	@make -C libft/

@@ -13,8 +13,11 @@
 #ifndef HEADER_H
 # define HEADER_H
 
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 600
+# define HEIGHT 600
+# define DWA_PI 2 * 3.141592
+# define PI 3.141592
+# define PI_2 3.141592 / 2
 
 # include "libft/includes/libft.h"
 # include <math.h>
@@ -45,12 +48,6 @@ typedef	struct	s_vec
 	float w;
 }				t_vec;
 
-typedef	struct	s_matrix3
-{
-	float	m[3][3];
-	t_vec	vec;
-}				t_matrix3;
-
 typedef	struct	s_matrix4
 {
 	float	m[4][4];
@@ -59,13 +56,36 @@ typedef	struct	s_matrix4
 
 typedef	struct	s_mapinfo
 {
-	t_vec	vec;
-	int		lines;
-	char	**map;
-	void	*mlx;
-	void	*win;
+	t_matrix4	matrix;
+	t_vec		*vec;
+	int			lines;
+	int			values;
+	int			**numbers;
+	char		**map;
+	char		*lol;
+	void		*mlx;
+	void		*win;
 }				t_mapinfo;
 
+typedef	struct s_fdf_gnl
+{
+	char	*line;
+	char	*buffer;
+	char	*arg;
+	int		nb_values;
+	int		nb_lines;
+	int		fd;
+	int		ret;
+}				t_fdf_gnl;
+
+void		draw(t_mapinfo *map);
+void		render();
+void		transform(t_mapinfo *map);
+void		read_func(char **argv, t_mapinfo *map);
+void		init_vector(t_vec **vec);
+void		init_mapinfo(t_mapinfo **map);
+void		init_gnl_struct(t_fdf_gnl **gnl);
+void		check_content(char **argv);
 float		vec_lenght(t_vec struc);
 t_vec		vec_normalizing(t_vec struc, float lenght);
 t_vec		vec_cross(t_vec a, t_vec b);
