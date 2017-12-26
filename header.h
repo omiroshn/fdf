@@ -48,18 +48,17 @@ typedef	struct	s_vec
 	float w;
 }				t_vec;
 
-typedef	struct	s_matrix4
+typedef struct	s_matrix4
 {
-	float	m[4][4];
-	t_vec	vec;
+	float		m[4][4];
 }				t_matrix4;
 
 typedef	struct	s_mapinfo
 {
-	t_matrix4	matrix;
 	t_vec		*vec;
 	int			lines;
 	int			values;
+	int			quantity;
 	int			**numbers;
 	char		**map;
 	char		*lol;
@@ -78,7 +77,10 @@ typedef	struct s_fdf_gnl
 	int		ret;
 }				t_fdf_gnl;
 
-void		draw(t_mapinfo *map);
+t_matrix4	rotate_vectors_x(t_mapinfo *map, double angle);
+t_matrix4	rotate_vectors_y(t_mapinfo *map, double angle);
+t_matrix4	rotate_vectors_z(t_mapinfo *map, double angle);
+void		draw(t_mapinfo *map, double angle);
 void		render();
 void		transform(t_mapinfo *map);
 void		read_func(char **argv, t_mapinfo *map);

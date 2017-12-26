@@ -85,7 +85,7 @@ t_matrix4	matrix_mult(const t_matrix4 m, const t_matrix4 rhs)
 		j = 0;
 		while (j < 4)
 		{
-			mult.m[i][j] =  m.m[i][0] * rhs.m[0][j] +
+			mult.m[i][j] =	m.m[i][0] * rhs.m[0][j] +
 							m.m[i][1] * rhs.m[1][j] +
 							m.m[i][2] * rhs.m[2][j] +
 							m.m[i][3] * rhs.m[3][j];
