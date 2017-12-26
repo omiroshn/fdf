@@ -16,45 +16,51 @@ void tests();
 
 int my_key_funct(int keycode, void *param)
 {
-	int			speed;
-	int			i;
-	t_mapinfo	*map;
-	int			triangle_amount;
-	int radius = 20;
-	static double angle = 0;
+	int				speed;
+	t_mapinfo		*map;
+	int				radius;
 
 	speed = 20;
-	triangle_amount = 200;
+	radius = 20;
 	map = (t_mapinfo *)param;
+	static double angle_x = 0;
+	static double angle_y = 0;
+	static double angle_z = 0;
 	mlx_clear_window(map->mlx, map->win);
 	if (keycode == 65307)
 		exit(0);
 	else if (keycode == 65363)
 	{
-		map->vec->x = map->vec->x + speed;
-		angle += 0.1;
+		//map->vec->x = map->vec->x + speed;
+		angle_y += 0.1;
 	}
 	else if (keycode == 65361)
 	{
-		map->vec->x = map->vec->x - speed;
-		angle -= 0.1;
+		//map->vec->x = map->vec->x - speed;
+		angle_y -= 0.1;
 	}
 	else if (keycode == 65362)
-		map->vec->y = map->vec->y - speed;
+	{
+		//map->vec->y = map->vec->y - speed;
+		angle_x += 0.1;
+	}
 	else if (keycode == 65364)
-		map->vec->y = map->vec->y + speed;
-	// i = 0;
-	// while (i < triangle_amount)
-	// {
-	// 	mlx_pixel_put(map->mlx, map->win,
-	// 		map->vec->x + (radius * cos(i * DWA_PI / triangle_amount)),
-	// 		map->vec->y + (radius * sin(i * DWA_PI / triangle_amount)),
-	// 		0xFFFFFF);
-	// 	i++;
-	// }
-	//printf("key event %d\n", keycode);
-
-	draw(map, angle);
+	{
+		//map->vec->y = map->vec->y + speed;
+		angle_x -= 0.1;
+	}
+	else if (keycode == 49)
+	{
+		//map->vec->y = map->vec->y + speed;
+		angle_z += 0.1;
+	}
+	else if (keycode == 50)
+	{
+		//map->vec->y = map->vec->y + speed;
+		angle_z -= 0.1;
+	}
+	draw(map, angle_x, angle_y, angle_z);
+	//printf("%i\n", keycode);
 	return (0);
 }
 
@@ -69,7 +75,7 @@ int		main(int argc, char **argv)
 		//check_content(argv);
 		render(&map);
 		read_func(argv, &map);
-		draw(&map, 0);
+		draw(&map, 0, 0, 0);
 		mlx_hook(map.win, 2, 5, my_key_funct, &map);
 		mlx_loop(map.mlx);
 

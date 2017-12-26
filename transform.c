@@ -19,4 +19,5 @@ void	transform(t_mapinfo *map)
 		}
 		i++;
 	}
+	map->quantity = map->values * map->lines;
 }

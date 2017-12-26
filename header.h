@@ -64,6 +64,9 @@ typedef	struct	s_mapinfo
 	char		*lol;
 	void		*mlx;
 	void		*win;
+	float		angle_x;
+	float		angle_y;
+	float		angle_z;
 }				t_mapinfo;
 
 typedef	struct s_fdf_gnl
@@ -77,10 +80,10 @@ typedef	struct s_fdf_gnl
 	int		ret;
 }				t_fdf_gnl;
 
-t_matrix4	rotate_vectors_x(t_mapinfo *map, double angle);
-t_matrix4	rotate_vectors_y(t_mapinfo *map, double angle);
-t_matrix4	rotate_vectors_z(t_mapinfo *map, double angle);
-void		draw(t_mapinfo *map, double angle);
+t_matrix4	rotate_vectors_x(t_mapinfo *map, double angle_x, double angle_y, double angle_z);
+t_matrix4	rotate_vectors_y(t_mapinfo *map, double angle_x, double angle_y, double angle_z);
+t_matrix4	rotate_vectors_z(t_mapinfo *map, double angle_x, double angle_y, double angle_z);
+void		draw(t_mapinfo *map, double angle_x, double angle_y, double angle_z);
 void		render();
 void		transform(t_mapinfo *map);
 void		read_func(char **argv, t_mapinfo *map);
