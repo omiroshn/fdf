@@ -12,9 +12,9 @@ void	transform(t_mapinfo *map)
 		j = 0;
 		while (j < map->values)
 		{
-			map->vec[i * map->values + j].x = j;
-			map->vec[i * map->values + j].y = i;
-			map->vec[i * map->values + j].z = map->numbers[i][j];
+			map->vec[i * map->values + j].x = j + WIDTH / 2 ;
+			map->vec[i * map->values + j].y = i + HEIGHT / 2;
+			map->vec[i * map->values + j].z = map->numbers[i][j] * 15;
 			j++;
 		}
 		i++;
