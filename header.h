@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/18 21:27:43 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/27 19:11:15 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef	struct	s_mapinfo
 	int			values;
 	int			quantity;
 	int			**numbers;
+	int			min_len_z;	
+	int			max_len_z;
 	char		**map;
 	char		*lol;
 	void		*mlx;
@@ -75,16 +77,17 @@ typedef	struct	s_mapinfo
 	float		angle_x;
 	float		angle_y;
 	float		angle_z;
+	float		scale;
 }				t_mapinfo;
 
+void		lenth_of_z(t_mapinfo *map);
 int			exit_x(void *par);
 int			my_key_funct(int keycode, void *param);
 void		init_center(t_mapinfo *map);
 void		init(t_mapinfo *map);
-void		draw(t_mapinfo *map);
+void		draw(t_mapinfo *map, int speed);
 void		transform(t_mapinfo *map);
 void		read_func(char **argv, t_mapinfo *map);
-void		init_vector(t_vec **vec);
 void		check_content(char **argv);
 float		vec_lenght(t_vec struc);
 float		vec_mult(t_vec a, t_vec b);

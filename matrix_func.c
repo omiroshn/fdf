@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_func.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 15:34:20 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/22 15:34:21 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/27 17:11:38 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,13 @@ t_vec	vec_matrix_mult(const t_vec vec, const t_matrix4 rhs)
 {
 	t_vec	res;
 	
-	res.x = vec.x * rhs.m[0][0] + vec.y * rhs.m[1][0] + vec.z * rhs.m[2][0] + vec.w * rhs.m[3][0];
-	res.y = vec.x * rhs.m[0][1] + vec.y * rhs.m[1][1] + vec.z * rhs.m[2][1] + vec.w * rhs.m[3][1];
-	res.z = vec.x * rhs.m[0][2] + vec.y * rhs.m[1][2] + vec.z * rhs.m[2][2] + vec.w * rhs.m[3][2];
-	res.w = vec.x * rhs.m[0][3] + vec.y * rhs.m[1][3] + vec.z * rhs.m[2][3] + vec.w * rhs.m[3][3];
+	res.x = vec.x * rhs.m[0][0] + vec.y * rhs.m[1][0]
+	+ vec.z * rhs.m[2][0] + vec.w * rhs.m[3][0];
+	res.y = vec.x * rhs.m[0][1] + vec.y * rhs.m[1][1]
+	+ vec.z * rhs.m[2][1] + vec.w * rhs.m[3][1];
+	res.z = vec.x * rhs.m[0][2] + vec.y * rhs.m[1][2]
+	+ vec.z * rhs.m[2][2] + vec.w * rhs.m[3][2];
+	res.w = vec.x * rhs.m[0][3] + vec.y * rhs.m[1][3]
+	+ vec.z * rhs.m[2][3] + vec.w * rhs.m[3][3];
 	return (res);
 }

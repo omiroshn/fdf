@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 13:09:31 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/17 13:09:33 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/27 18:55:04 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ int		main(int argc, char **argv)
 		ft_putstr("Usage : ./fdf <filename>\n");
 	else
 	{
-		read_func(argv, &map);
 		init(&map);
-		draw(&map);
+		read_func(argv, &map);
+		draw(&map, 0);
 		mlx_hook(map.win, 2, 5, my_key_funct, &map);
 		mlx_hook(map.win, 17, 1L << 17, exit_x, &map);
 		mlx_loop(map.mlx);
-		//tests();
 	}
 	return (0);
 }

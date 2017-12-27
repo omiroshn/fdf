@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:23 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/26 21:41:28 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/27 19:11:50 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,48 @@ int my_key_funct(int keycode, void *param)
 	int				speed;
 	t_mapinfo		*map;
 	int				i;
+	int				scale_true;
+	char			*str;
 
 	speed = 3;
+	str = "";
 	map = (t_mapinfo *)param;
 	mlx_clear_window(map->mlx, map->win);
 	if (keycode == 53)
 		exit(0);
 	else if (keycode == 124)
+	{
+		str = "right";
 		map->angle_y += 0.1;
+	}
 	else if (keycode == 123)
+	{
+		str = "left";
 		map->angle_y -= 0.1;
+	}
 	else if (keycode == 126)
+	{
+		str = "up";
 		map->angle_x += 0.1;
+	}
 	else if (keycode == 125)
+	{
+		str = "down";
 		map->angle_x -= 0.1;
+	}
 	else if (keycode == 18)
-		map->angle_z += 0.1;
-	else if (keycode == 19)
+	{
+		str = "z-left";
 		map->angle_z -= 0.1;
+	}
+	else if (keycode == 19)
+	{
+		str = "z-right";
+		map->angle_z += 0.1;
+	}
 	else if (keycode == 13)
 	{
+		str = "up";
 		i = 0;
 		while (i < map->quantity)
 		{
@@ -46,6 +68,7 @@ int my_key_funct(int keycode, void *param)
 	}
 	else if (keycode == 1)
 	{
+		str = "down";
 		i = 0;
 		while (i < map->quantity)
 		{
@@ -55,6 +78,7 @@ int my_key_funct(int keycode, void *param)
 	}
 	else if (keycode == 0)
 	{
+		str = "left";
 		i = 0;
 		while (i < map->quantity)
 		{
@@ -64,6 +88,7 @@ int my_key_funct(int keycode, void *param)
 	}
 	else if (keycode == 2)
 	{
+		str = "right";
 		i = 0;
 		while (i < map->quantity)
 		{
@@ -71,25 +96,40 @@ int my_key_funct(int keycode, void *param)
 			i++;
 		}
 	}
-	draw(map);
+	else if (keycode == 78)
+	{
+		str = "-";
+		if (map->scale > 0)
+			map->scale -= 1;
+	}
+	else if (keycode == 69)
+	{
+		str = "+";
+		map->scale += 1;
+	}
+	draw(map, speed);
+	mlx_string_put(map->mlx, map->win, 10, 10, 0xCCCCCC, "button:");
+	mlx_string_put(map->mlx, map->win, 90, 10, 0xFFFFFF, str);
+	//printf("%i\n", keycode);
 	return (0);
 }
 
-void draw(t_mapinfo *map)
+void draw(t_mapinfo *map, int speed)
 {
-	t_matrix4	rot[4];
+	t_matrix4	matrix_rot[4];
 	t_vec		vec;
 	int			i;
 
-	rot[0] = rotate_vectors_x(map);
-	rot[1] = rotate_vectors_y(map);
-	rot[2] = rotate_vectors_z(map);
-	rot[3] = matrix_mult(matrix_mult(rot[0], rot[1]), rot[2]);
+	matrix_rot[0] = rotate_vectors_x(map);
+	matrix_rot[1] = rotate_vectors_y(map);
+	matrix_rot[2] = rotate_vectors_z(map);
+	matrix_rot[3] = matrix_mult(matrix_mult(matrix_rot[0],
+		matrix_rot[1]), matrix_rot[2]);
 	i = 0;
 	while (i < map->quantity)
 	{
-		vec = vec_matrix_mult(map->vec[i], rot[3]);
-		mlx_pixel_put(map->mlx, map->win, vec.x, vec.y, 0xFFFFFF);
+		vec = vec_matrix_mult(map->vec[i], matrix_rot[3]);
+		mlx_pixel_put(map->mlx, map->win, vec.x * map->scale + WIDTH / 2, vec.y * map->scale + HEIGHT / 2, 0xFFFFFF);
 		i++;
 	}
 }

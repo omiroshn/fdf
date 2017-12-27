@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/26 21:41:36 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/27 19:11:04 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init(t_mapinfo *map)
 	map->angle_z = 0;
 	map->lines = 0;
 	map->values = 0;
+	map->scale = 15;
 }
 
 void	init_center(t_mapinfo *map)
