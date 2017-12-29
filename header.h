@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/27 19:11:15 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/29 22:01:41 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_matrix4
 typedef	struct	s_mapinfo
 {
 	t_vec		*vec;
+	t_vec		*vec_ch;
 	int			lines;
 	int			values;
 	int			quantity;
@@ -80,6 +81,8 @@ typedef	struct	s_mapinfo
 	float		scale;
 }				t_mapinfo;
 
+
+void		draw_line(t_mapinfo *map, int x0, int y0, int x1, int y1);
 void		lenth_of_z(t_mapinfo *map);
 int			exit_x(void *par);
 int			my_key_funct(int keycode, void *param);
@@ -100,6 +103,7 @@ t_matrix4	matrix_mult(const t_matrix4 m, const t_matrix4 rhs);
 t_matrix4	rotate_vectors_x(t_mapinfo *map);
 t_matrix4	rotate_vectors_y(t_mapinfo *map);
 t_matrix4	rotate_vectors_z(t_mapinfo *map);
+t_matrix4	scale_vectors_x(t_mapinfo *map);
 
 
 #endif
