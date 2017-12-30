@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 06:56:45 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/30 08:16:25 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ typedef struct	s_matrix4
 	float		m[4][4];
 }				t_matrix4;
 
+typedef struct	s_persp_proj
+{
+	float angle_of_view;
+	float image_aspect_ratio;
+	float n;
+	float f;
+	float b;
+	float t;
+	float l;
+	float r;
+	float scale;
+}				t_persp_proj;
+
 typedef struct	s_bresenhem
 {
 	int x0;
@@ -100,12 +113,14 @@ typedef	struct	s_mapinfo
 	int			speed;
 }				t_mapinfo;
 
+void			init_perspective_projection(t_persp_proj *proj);
 void			init_bresenh1(t_bresenhem *a);
 void			init_bresenh2(t_bresenhem *a);
 void			draw_last_line(t_mapinfo *map, int i);
 void			draw_all_lines(t_mapinfo *map);
 void			bresenhem_p2(t_mapinfo *map, t_bresenhem *a);
 void			bresenhem_p1(t_mapinfo *map, t_bresenhem *a);
+void			help_keys(int keycode, t_mapinfo *map);
 void			wasd_keys(int keycode, t_mapinfo *map);
 void			arrow_keys(int keycode, t_mapinfo *map);
 void			draw_line(t_mapinfo *map, t_vec vec1, t_vec vec2);
@@ -131,5 +146,6 @@ t_matrix4		rotate_vectors_x(t_mapinfo *map);
 t_matrix4		rotate_vectors_y(t_mapinfo *map);
 t_matrix4		rotate_vectors_z(t_mapinfo *map);
 t_matrix4		scale_vectors_x(t_mapinfo *map);
+t_matrix4		perspective_projection(t_mapinfo *map);
 
 #endif

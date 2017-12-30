@@ -24,6 +24,7 @@ clean:
 	@printf '\033[33m[ ✔ ] %s\n\033[0m' "fdf: Clean"
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf fdf.dSYM
 	@make -C libft/ fclean
 	@printf '\033[31m[ ✔ ] %s\n\033[0m' "fdf: Fclean"
 re: fclean all

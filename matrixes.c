@@ -6,11 +6,36 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 05:14:36 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 05:14:49 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/30 08:46:36 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+t_matrix4	perspective_projection(t_mapinfo *map)
+{
+	t_matrix4		rhs;
+	t_persp_proj	proj;
+
+	init_perspective_projection(&proj);
+	rhs.m[0][0] = 2 * proj.n / (proj.r - proj.l);
+	rhs.m[0][1] = 0;
+	rhs.m[0][2] = 0;
+	rhs.m[0][3] = 0;
+	rhs.m[1][0] = 0;
+	rhs.m[1][1] = 2 * proj.n / (proj.t - proj.b);
+	rhs.m[1][2] = 0;
+	rhs.m[1][3] = 0;
+	rhs.m[2][0] = (proj.r + proj.l) / (proj.r - proj.l);
+	rhs.m[2][1] = (proj.t + proj.b) / (proj.t - proj.b);
+	rhs.m[2][2] = -(proj.f + proj.n) / (proj.f - proj.n);
+	rhs.m[2][3] = -1;
+	rhs.m[3][0] = 0;
+	rhs.m[3][1] = 0;
+	rhs.m[3][2] = -2 * proj.f * proj.n / (proj.f - proj.n);
+	rhs.m[3][3] = 1;
+	return (rhs);
+}
 
 t_matrix4	scale_vectors_x(t_mapinfo *map)
 {

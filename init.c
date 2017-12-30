@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 06:56:48 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/30 08:44:46 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ void	init(t_mapinfo *map)
 	map->offset_y = 0;
 	map->offset_z = 0;
 	map->speed = 10;
+}
+
+void	init_perspective_projection(t_persp_proj *proj)
+{
+	proj->n = 0.01;
+	proj->f = 100; 
+	proj->angle_of_view = 60;
+	proj->image_aspect_ratio = HEIGHT / WIDTH;
+	proj->scale = tan(proj->angle_of_view * 0.5 * M_PI / 180) * proj->n;
+	proj->b = proj->t * -1;
+	proj->t = proj->scale;
+	proj->r = proj->image_aspect_ratio * proj->scale;
+	proj->l = proj->r * -1;
 }
 
 void	init_bresenh1(t_bresenhem *a)

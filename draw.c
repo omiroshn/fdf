@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:23 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 06:58:54 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/30 09:01:32 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_all_lines(t_mapinfo *map)
 void	draw(t_mapinfo *map)
 {
 	int			i;
-	t_matrix4	m_rot[5];
+	t_matrix4	m_rot[6];
 
 	m_rot[0] = rotate_vectors_x(map);
 	m_rot[1] = rotate_vectors_y(map);
@@ -61,6 +61,9 @@ void	draw(t_mapinfo *map)
 	m_rot[3] = scale_vectors_x(map);
 	m_rot[4] = matrix_mult(matrix_mult(matrix_mult(m_rot[0],
 		m_rot[1]), m_rot[2]), m_rot[3]);
+	// m_rot[4] = perspective_projection(map);
+	// m_rot[5] = matrix_mult(matrix_mult(matrix_mult(matrix_mult(m_rot[0],
+		// m_rot[1]), m_rot[2]), m_rot[3]), m_rot[4]);
 	i = 0;
 	while (i < map->quantity)
 	{
