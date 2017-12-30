@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/27 19:11:04 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/30 06:56:48 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init(t_mapinfo *map)
 {
-	//init_center(map);
 	map->mlx = mlx_init();
 	map->win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "omiroshn's fdf");
 	map->angle_x = 0;
@@ -22,25 +21,34 @@ void	init(t_mapinfo *map)
 	map->angle_z = 0;
 	map->lines = 0;
 	map->values = 0;
-	map->scale = 15;
+	map->scale = 1;
+	map->offset_x = 0;
+	map->offset_y = 0;
+	map->offset_z = 0;
+	map->speed = 10;
 }
 
-void	init_center(t_mapinfo *map)
+void	init_bresenh1(t_bresenhem *a)
 {
-	int			i;
-
-	i = 0;
-	while (i < map->quantity)
-	{
-		map->vec[i].x += HEIGHT / 60;
-		map->vec[i].y += WIDTH / 60;
-		i++;
-	}
+	a->d = (a->dy << 1) - a->dx;
+	a->d1 = a->dy << 1;
+	a->d2 = (a->dy - a->dx) << 1;
+	a->x = a->x0 + a->sx;
+	a->y = a->y0;
 }
 
-int exit_x(void *par)
+void	init_bresenh2(t_bresenhem *a)
 {
-	par = NULL;
+	a->d = (a->dx << 1) - a->dy;
+	a->d1 = a->dx << 1;
+	a->d2 = (a->dx - a->dy) << 1;
+	a->y = a->y0 + a->sy;
+	a->x = a->x0;
+}
+
+int		exit_func(void *param)
+{
+	param = NULL;
 	exit(1);
 	return (0);
 }

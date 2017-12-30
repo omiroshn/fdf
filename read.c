@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omiroshn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:42:07 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/26 21:42:09 by omiroshn         ###   ########.fr       */
+/*   Updated: 2017/12/30 06:05:17 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	ft_countwords(char *str, char c)
+int			ft_countwords(char *str, char c)
 {
 	int i;
 	int result;
@@ -48,7 +48,7 @@ static int	gnl_values(char *filename)
 	return (ft_countwords(lol, ' '));
 }
 
-static int lenth_of_fdf(char *filename)
+static int	lenth_of_fdf(char *filename)
 {
 	int		fd;
 	char	*lol;
@@ -65,13 +65,13 @@ static int lenth_of_fdf(char *filename)
 	{
 		lenght++;
 		free(lol);
-		lol = NULL; 
+		lol = NULL;
 	}
 	close(fd);
 	return (lenght);
 }
 
-void read_func(char **argv, t_mapinfo *map)
+void		read_func(char **argv, t_mapinfo *map)
 {
 	int			i;
 	int			j;

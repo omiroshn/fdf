@@ -1,5 +1,5 @@
 CC = gcc
-FILES = main matrix_func transform init read draw
+FILES = main matrix_func transform init read draw matrixes key_func color draw_line
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addprefix obj/, $(addsuffix .o, $(FILES)))
 DEBUG = -g
