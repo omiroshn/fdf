@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:23 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 09:01:32 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/02 19:35:11 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	draw(t_mapinfo *map)
 			map->vec_ch[i] = vec_matrix_mult(map->vec[i], matrix_mult(m_rot[6], m_rot[4]));
 		map->vec_ch[i].x += map->offset_x;
 		map->vec_ch[i].y += map->offset_y;
+		map->vec_ch[i].color = map->vec[i].color;
 		i++;
 	}
 	draw_all_lines(map);

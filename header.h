@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 08:16:25 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/02 20:55:20 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define MAC_BUT_D 2
 # define MAC_BUT_1 18
 # define MAC_BUT_2 19
+# define MAC_BUT_P 35
 
 # define LINUX_ESC_BUT 65307
 # define LINUX_QUEST_BUT 47
@@ -112,6 +113,7 @@ typedef struct	s_persp_proj
 
 typedef struct	s_bresenhem
 {
+	int color;
 	int x0;
 	int y0;
 	int dx;
@@ -133,6 +135,7 @@ typedef	struct	s_mapinfo
 	t_vec		*vec_ch;
 	int			lines;
 	int			values;
+	int			color_values;
 	int			quantity;
 	int			**numbers;
 	int			min_len_z;
@@ -159,8 +162,8 @@ void			init_bresenh1(t_bresenhem *a);
 void			init_bresenh2(t_bresenhem *a);
 void			draw_last_line(t_mapinfo *map, int i);
 void			draw_all_lines(t_mapinfo *map);
-void			bresenhem_p2(t_mapinfo *map, t_bresenhem *a, int color);
-void			bresenhem_p1(t_mapinfo *map, t_bresenhem *a, int color);
+void			bresenhem_p2(t_mapinfo *map, t_bresenhem *a);
+void			bresenhem_p1(t_mapinfo *map, t_bresenhem *a);
 void			help_keys(int keycode, t_mapinfo *map);
 void			wasd_keys(int keycode, t_mapinfo *map);
 void			arrow_keys(int keycode, t_mapinfo *map);

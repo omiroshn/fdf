@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:42:07 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 06:05:17 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/02 19:33:06 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,16 @@ static int	lenth_of_fdf(char *filename)
 
 void		read_func(char **argv, t_mapinfo *map)
 {
-	int			i;
-	int			j;
-	int			fd;
+	int	i;
+	int	j;
+	int	fd;
 
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		printf("error fd read_func");
 	map->lines = lenth_of_fdf(argv[1]);
 	map->values = gnl_values(argv[1]);
+	map->quantity = map->values * map->lines;
+	map->vec = (t_vec *)malloc(sizeof(t_vec) * map->quantity);
 	map->numbers = (int **)malloc(sizeof(int *) * map->lines);
 	i = 0;
 	while (i < map->lines)
@@ -88,38 +90,40 @@ void		read_func(char **argv, t_mapinfo *map)
 		map->numbers[i] = (int *)malloc(sizeof(int) * map->values);
 		get_next_line(fd, &map->lol);
 		map->map = ft_strsplit(map->lol, ' ');
-		printf("GNL lol: %s\n", map->lol);
 		j = 0;
 		while (j < map->values)
 		{
-			printf("i:%i j:%i string:%s\n", i, j, map->map[j]);
 			map->color = ft_strsplit(map->map[j], ',');	
-			printf("i:%i j:%i color:%s\n", i, j, map->color[j]);
 			map->numbers[i][j] = ft_atoi(map->map[j]);
+			if (map->color[1] == NULL)
+				map->color[1] = "0xFFFFFF";
+			//printf("%s ", map->color[1]);
+			map->vec[i * map->values + j].color = ft_atoi_base(map->color[1], 16);
+			//printf("%i\n", map->vec[i * map->values + j].color);
 			j++;
 		}
+		//printf("\n");
 		i++;
 	}
 	//read_color(map);
 	transform(map);
 }
 
-// void		read_color(t_mapinfo *map)
-// {
-// 	int			i;
-// 	int			j;
+void		read_color(t_mapinfo *map)
+{
+	int i;
+	int j;
 
-// 	i = 0;
-// 	printf("%i %i\n", map->lines, map->values);
-// 	while (i < map->lines)
-// 	{
-		
-// 		while (j < map->values)
-// 		{
-			
-			
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (i < map->lines)
+	{
+		j = 0;
+		while (j < map->values)
+		{
+			printf("%i\n", map->vec[i * map->values + j].color);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}

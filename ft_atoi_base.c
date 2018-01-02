@@ -33,6 +33,7 @@ int			ft_atoi_base(char *str, int base)
 	value = 0;
 	if (base <= 1 || base > 36)
 		return (0);
+	str += 2;
 	while (is_delimiter(*str))
 		str++;
 	minus = (*str == '-') ? -1 : 1;

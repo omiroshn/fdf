@@ -6,13 +6,13 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 06:37:48 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 08:55:16 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/02 20:55:05 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	bresenhem_p2(t_mapinfo *map, t_bresenhem *a, int color)
+void	bresenhem_p2(t_mapinfo *map, t_bresenhem *a)
 {
 	int	i;
 	if (a->dy > a->dx)
@@ -20,7 +20,7 @@ void	bresenhem_p2(t_mapinfo *map, t_bresenhem *a, int color)
 		i = 1;
 		init_bresenh2(a);
 		mlx_pixel_put(map->mlx, map->win, a->x0 + WIDTH / 2,
-			a->y0 + HEIGHT / 2, color);
+			a->y0 + HEIGHT / 2, a->color);
 		while (i <= a->dy)
 		{
 			if (a->d > 0)
@@ -31,14 +31,14 @@ void	bresenhem_p2(t_mapinfo *map, t_bresenhem *a, int color)
 			else
 				a->d += a->d1;
 			mlx_pixel_put(map->mlx, map->win, a->x + WIDTH / 2,
-				a->y + HEIGHT / 2, color);
+				a->y + HEIGHT / 2, a->color);
 			i++;
 			a->y += a->sy;
 		}
 	}
 }
 
-void	bresenhem_p1(t_mapinfo *map, t_bresenhem *a, int color)
+void	bresenhem_p1(t_mapinfo *map, t_bresenhem *a)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ void	bresenhem_p1(t_mapinfo *map, t_bresenhem *a, int color)
 		i = 1;
 		init_bresenh1(a);
 		mlx_pixel_put(map->mlx, map->win, a->x0 + WIDTH / 2,
-			a->y0 + HEIGHT / 2, color);
+			a->y0 + HEIGHT / 2, a->color);
 		while (i <= a->dx)
 		{
 			if (a->d > 0)
@@ -58,7 +58,7 @@ void	bresenhem_p1(t_mapinfo *map, t_bresenhem *a, int color)
 			else
 				a->d += a->d1;
 			mlx_pixel_put(map->mlx, map->win, a->x + WIDTH / 2,
-				a->y + HEIGHT / 2, color);
+				a->y + HEIGHT / 2, a->color);
 			i++;
 			a->x += a->sx;
 		}
@@ -70,9 +70,9 @@ void	draw_line(t_mapinfo *map, t_vec vec1, t_vec vec2)
 	t_bresenhem		a;
 	int				x1;
 	int				y1;
-	int				color;
 
-	color = 16761035;
+	a.color = (1 - 0.1) * vec1.color + 0.1 * vec1.color;
+	//a.color2 = vec2.color;
 	a.x0 = (int)vec1.x;
 	a.y0 = (int)vec1.y;
 	x1 = (int)vec2.x;
@@ -81,6 +81,6 @@ void	draw_line(t_mapinfo *map, t_vec vec1, t_vec vec2)
 	a.dy = abs(y1 - a.y0);
 	a.sx = x1 >= a.x0 ? 1 : -1;
 	a.sy = y1 >= a.y0 ? 1 : -1;
-	bresenhem_p1(map, &a, color);
-	bresenhem_p2(map, &a, color);
+	bresenhem_p1(map, &a);
+	bresenhem_p2(map, &a);
 }

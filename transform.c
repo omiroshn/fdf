@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:42:15 by omiroshn          #+#    #+#             */
-/*   Updated: 2017/12/30 06:59:38 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/02 19:32:12 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	transform(t_mapinfo *map)
 	int i;
 	int j;
 
-	map->quantity = map->values * map->lines;
-	map->vec = (t_vec *)malloc(sizeof(t_vec) * map->quantity);
 	map->vec_ch = (t_vec *)malloc(sizeof(t_vec) * map->quantity);
 	lenth_of_z(map);
 	i = 0;
