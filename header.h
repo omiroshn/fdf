@@ -19,6 +19,41 @@
 # define PI 3.141592
 # define PI_2 3.141592 / 2
 
+# define MAC_ESC_BUT 53
+# define MAC_QUEST_BUT 44
+# define MAC_ARROW_UP 126
+# define MAC_ARROW_DOWN 125
+# define MAC_ARROW_LEFT 123
+# define MAC_ARROW_RIGHT 124
+# define MAC_BUT_Z 6
+# define MAC_BUT_X 7
+# define MAC_BUT_MINUS 78
+# define MAC_BUT_PLUS 69
+# define MAC_BUT_W 13
+# define MAC_BUT_A 0
+# define MAC_BUT_S 1
+# define MAC_BUT_D 2
+# define MAC_BUT_1 18
+# define MAC_BUT_2 19
+
+# define LINUX_ESC_BUT 65307
+# define LINUX_QUEST_BUT 47
+# define LINUX_ARROW_UP 65362
+# define LINUX_ARROW_DOWN 65364
+# define LINUX_ARROW_LEFT 65361
+# define LINUX_ARROW_RIGHT 65363
+# define LINUX_BUT_Z 122
+# define LINUX_BUT_X 120
+# define LINUX_BUT_MINUS 45
+# define LINUX_BUT_PLUS 61
+# define LINUX_BUT_W 119
+# define LINUX_BUT_A 97
+# define LINUX_BUT_S 115
+# define LINUX_BUT_D 100
+# define LINUX_BUT_1 49
+# define LINUX_BUT_2 50
+# define LINUX_BUT_P 112
+
 # include "libft/includes/libft.h"
 # include <math.h>
 # include <fcntl.h>
@@ -50,10 +85,11 @@
 
 typedef	struct	s_vec
 {
-	float x;
-	float y;
-	float z;
-	float w;
+	float	x;
+	float	y;
+	float	z;
+	float	w;
+	int		color;
 }				t_vec;
 
 typedef struct	s_matrix4
@@ -102,6 +138,7 @@ typedef	struct	s_mapinfo
 	int			min_len_z;
 	int			max_len_z;
 	char		**map;
+	char		**color;
 	char		*lol;
 	float		angle_x;
 	float		angle_y;
@@ -111,15 +148,19 @@ typedef	struct	s_mapinfo
 	float		offset_y;
 	float		offset_z;
 	int			speed;
+	int			turned_on;
 }				t_mapinfo;
 
+void			read_color(t_mapinfo *map);
+int				ft_atoi_base(char *str, int base);
+int				my_atoi_base(char *str, int base);
 void			init_perspective_projection(t_persp_proj *proj);
 void			init_bresenh1(t_bresenhem *a);
 void			init_bresenh2(t_bresenhem *a);
 void			draw_last_line(t_mapinfo *map, int i);
 void			draw_all_lines(t_mapinfo *map);
-void			bresenhem_p2(t_mapinfo *map, t_bresenhem *a);
-void			bresenhem_p1(t_mapinfo *map, t_bresenhem *a);
+void			bresenhem_p2(t_mapinfo *map, t_bresenhem *a, int color);
+void			bresenhem_p1(t_mapinfo *map, t_bresenhem *a, int color);
 void			help_keys(int keycode, t_mapinfo *map);
 void			wasd_keys(int keycode, t_mapinfo *map);
 void			arrow_keys(int keycode, t_mapinfo *map);
@@ -146,6 +187,7 @@ t_matrix4		rotate_vectors_x(t_mapinfo *map);
 t_matrix4		rotate_vectors_y(t_mapinfo *map);
 t_matrix4		rotate_vectors_z(t_mapinfo *map);
 t_matrix4		scale_vectors_x(t_mapinfo *map);
+t_matrix4		matrix_scale_z(t_mapinfo *map);
 t_matrix4		perspective_projection(t_mapinfo *map);
 
 #endif

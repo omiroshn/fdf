@@ -12,6 +12,29 @@
 
 #include "header.h"
 
+t_matrix4	matrix_scale_z(t_mapinfo *map)
+{
+	t_matrix4		rhs;
+
+	rhs.m[0][0] = 1;
+	rhs.m[0][1] = 0;
+	rhs.m[0][2] = 0;
+	rhs.m[0][3] = 0;
+	rhs.m[1][0] = 0;
+	rhs.m[1][1] = 1;
+	rhs.m[1][2] = 0;
+	rhs.m[1][3] = 0;
+	rhs.m[2][0] = 0;
+	rhs.m[2][1] = 0;
+	rhs.m[2][2] = map->offset_z;
+	rhs.m[2][3] = 0;
+	rhs.m[3][0] = 0;
+	rhs.m[3][1] = 0;
+	rhs.m[3][2] = 0;
+	rhs.m[3][3] = 1;
+	return (rhs);
+}
+
 float	vec_lenght(t_vec struc)
 {
 	return (sqrt(struc.x * struc.x +

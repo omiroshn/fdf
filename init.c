@@ -24,8 +24,9 @@ void	init(t_mapinfo *map)
 	map->scale = 1;
 	map->offset_x = 0;
 	map->offset_y = 0;
-	map->offset_z = 0;
+	map->offset_z = 1;
 	map->speed = 10;
+	map->turned_on = 1;
 }
 
 void	init_perspective_projection(t_persp_proj *proj)

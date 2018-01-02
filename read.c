@@ -88,13 +88,38 @@ void		read_func(char **argv, t_mapinfo *map)
 		map->numbers[i] = (int *)malloc(sizeof(int) * map->values);
 		get_next_line(fd, &map->lol);
 		map->map = ft_strsplit(map->lol, ' ');
+		printf("GNL lol: %s\n", map->lol);
 		j = 0;
 		while (j < map->values)
 		{
+			printf("i:%i j:%i string:%s\n", i, j, map->map[j]);
+			map->color = ft_strsplit(map->map[j], ',');	
+			printf("i:%i j:%i color:%s\n", i, j, map->color[j]);
 			map->numbers[i][j] = ft_atoi(map->map[j]);
 			j++;
 		}
 		i++;
 	}
+	//read_color(map);
 	transform(map);
 }
+
+// void		read_color(t_mapinfo *map)
+// {
+// 	int			i;
+// 	int			j;
+
+// 	i = 0;
+// 	printf("%i %i\n", map->lines, map->values);
+// 	while (i < map->lines)
+// 	{
+		
+// 		while (j < map->values)
+// 		{
+			
+			
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }

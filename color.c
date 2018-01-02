@@ -12,6 +12,7 @@
 
 #include "header.h"
 
+
 // int	clerp(int c1, int c2, double p)
 // {
 // 	int r;

@@ -53,24 +53,24 @@ void	draw_all_lines(t_mapinfo *map)
 void	draw(t_mapinfo *map)
 {
 	int			i;
-	t_matrix4	m_rot[6];
+	t_matrix4	m_rot[7];
 
 	m_rot[0] = rotate_vectors_x(map);
 	m_rot[1] = rotate_vectors_y(map);
 	m_rot[2] = rotate_vectors_z(map);
 	m_rot[3] = scale_vectors_x(map);
-	m_rot[4] = matrix_mult(matrix_mult(matrix_mult(m_rot[0],
-		m_rot[1]), m_rot[2]), m_rot[3]);
-	// m_rot[4] = perspective_projection(map);
-	// m_rot[5] = matrix_mult(matrix_mult(matrix_mult(matrix_mult(m_rot[0],
-		// m_rot[1]), m_rot[2]), m_rot[3]), m_rot[4]);
+	m_rot[4] = perspective_projection(map);
+	m_rot[5] = matrix_scale_z(map);
+	m_rot[6] = matrix_mult(matrix_mult(matrix_mult(matrix_mult(m_rot[5],
+		m_rot[0]), m_rot[1]), m_rot[2]), m_rot[3]);
 	i = 0;
 	while (i < map->quantity)
-	{
-		map->vec_ch[i] = vec_matrix_mult(map->vec[i], m_rot[4]);
+	{	
+		map->vec_ch[i] = vec_matrix_mult(map->vec[i], m_rot[6]);
+		if (map->turned_on < 0)
+			map->vec_ch[i] = vec_matrix_mult(map->vec[i], matrix_mult(m_rot[6], m_rot[4]));
 		map->vec_ch[i].x += map->offset_x;
 		map->vec_ch[i].y += map->offset_y;
-		map->vec_ch[i].z += map->offset_z;
 		i++;
 	}
 	draw_all_lines(map);
