@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:42:07 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/02 19:33:06 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 20:27:09 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,33 +97,10 @@ void		read_func(char **argv, t_mapinfo *map)
 			map->numbers[i][j] = ft_atoi(map->map[j]);
 			if (map->color[1] == NULL)
 				map->color[1] = "0xFFFFFF";
-			//printf("%s ", map->color[1]);
 			map->vec[i * map->values + j].color = ft_atoi_base(map->color[1], 16);
-			//printf("%i\n", map->vec[i * map->values + j].color);
 			j++;
 		}
-		//printf("\n");
 		i++;
 	}
-	//read_color(map);
 	transform(map);
-}
-
-void		read_color(t_mapinfo *map)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < map->lines)
-	{
-		j = 0;
-		while (j < map->values)
-		{
-			printf("%i\n", map->vec[i * map->values + j].color);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 }

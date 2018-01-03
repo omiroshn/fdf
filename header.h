@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/02 20:55:20 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 22:06:37 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ typedef struct	s_persp_proj
 
 typedef struct	s_bresenhem
 {
-	double color;
-	double color2;
+	int err;
+	int err2;
 	int x0;
 	int y0;
 	int	x1;

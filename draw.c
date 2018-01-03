@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:23 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/02 19:35:11 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 22:11:09 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	draw_last_line(t_mapinfo *map, int i)
 			map->vec_ch[i * map->values + j + 1]);
 		j++;
 	}
+
 }
 
 void	draw_all_lines(t_mapinfo *map)

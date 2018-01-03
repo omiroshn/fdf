@@ -12,7 +12,7 @@ NAME = fdf
 all: $(NAME)
 
 $(NAME): $(OBJ) libft/libft.a
-	$(CC) $(DEBUG) -o $(NAME) $(SRC) $(FLAGS) $(CGFLAGS_LINUX) libft/libft.a
+	$(CC) $(DEBUG) -o $(NAME) $(SRC) $(FLAGS) $(CGFLAGS_MAC) libft/libft.a
 
 libft/libft.a:
 	@make -C libft/
