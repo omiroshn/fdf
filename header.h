@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/03 23:04:25 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/04 01:13:10 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef	struct	s_mapinfo
 	int			turned_on;
 }				t_mapinfo;
 
+void			put_error(char *str);
 void			read_color(t_mapinfo *map);
 int				ft_atoi_base(char *str, int base);
 int				my_atoi_base(char *str, int base);

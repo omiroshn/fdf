@@ -1,6 +1,6 @@
 CC = clang
 FILES = main matrix_func matrix_func2 transform init \
-		read draw matrixes key_func draw_line ft_atoi_base
+		read draw matrixes key_func draw_line ft_atoi_base errors
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addprefix obj/, $(addsuffix .o, $(FILES)))
 DEBUG = -g
