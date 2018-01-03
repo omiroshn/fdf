@@ -113,11 +113,14 @@ typedef struct	s_persp_proj
 
 typedef struct	s_bresenhem
 {
-	int color;
+	double color;
+	double color2;
 	int x0;
 	int y0;
-	int dx;
-	int dy;
+	int	x1;
+	int y1;
+	int distx;
+	int disty;
 	int sx;
 	int sy;
 	int d;

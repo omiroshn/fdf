@@ -44,18 +44,18 @@ void	init_perspective_projection(t_persp_proj *proj)
 
 void	init_bresenh1(t_bresenhem *a)
 {
-	a->d = (a->dy << 1) - a->dx;
-	a->d1 = a->dy << 1;
-	a->d2 = (a->dy - a->dx) << 1;
+	a->d = (a->disty << 1) - a->distx;
+	a->d1 = a->disty << 1;
+	a->d2 = (a->disty - a->distx) << 1;
 	a->x = a->x0 + a->sx;
 	a->y = a->y0;
 }
 
 void	init_bresenh2(t_bresenhem *a)
 {
-	a->d = (a->dx << 1) - a->dy;
-	a->d1 = a->dx << 1;
-	a->d2 = (a->dx - a->dy) << 1;
+	a->d = (a->distx << 1) - a->disty;
+	a->d1 = a->distx << 1;
+	a->d2 = (a->distx - a->disty) << 1;
 	a->y = a->y0 + a->sy;
 	a->x = a->x0;
 }
