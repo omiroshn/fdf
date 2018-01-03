@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 05:13:49 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/03 20:16:12 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 23:04:44 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	wasd_keys(int keycode, t_mapinfo *map)
 		map->offset_y += map->speed;
 	else if (keycode == MAC_BUT_A && (str = "A"))
 		map->offset_x -= map->speed;
-	else if (keycode == MAC_BUT_D  && (str = "D"))
+	else if (keycode == MAC_BUT_D && (str = "D"))
 		map->offset_x += map->speed;
 	else if (keycode == MAC_BUT_MINUS && (str = "-") && map->scale > 0)
 		map->scale -= 2;

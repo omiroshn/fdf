@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:42:07 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/03 20:27:09 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 23:05:08 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		read_func(char **argv, t_mapinfo *map)
 		j = 0;
 		while (j < map->values)
 		{
-			map->color = ft_strsplit(map->map[j], ',');	
+			map->color = ft_strsplit(map->map[j], ',');
 			map->numbers[i][j] = ft_atoi(map->map[j]);
 			if (map->color[1] == NULL)
 				map->color[1] = "0xFFFFFF";

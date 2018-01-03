@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/03 22:06:37 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 23:04:25 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,21 +113,23 @@ typedef struct	s_persp_proj
 
 typedef struct	s_bresenhem
 {
-	int err;
-	int err2;
-	int x0;
-	int y0;
-	int	x1;
-	int y1;
-	int distx;
-	int disty;
-	int sx;
-	int sy;
-	int d;
-	int d1;
-	int d2;
-	int x;
-	int y;
+	t_vec	start;
+	t_vec	stop;
+	int		err;
+	int		err2;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
+	int		distx;
+	int		disty;
+	int		sx;
+	int		sy;
+	int		d;
+	int		d1;
+	int		d2;
+	int		x;
+	int		y;
 }				t_bresenhem;
 
 typedef	struct	s_mapinfo
@@ -161,12 +163,8 @@ void			read_color(t_mapinfo *map);
 int				ft_atoi_base(char *str, int base);
 int				my_atoi_base(char *str, int base);
 void			init_perspective_projection(t_persp_proj *proj);
-void			init_bresenh1(t_bresenhem *a);
-void			init_bresenh2(t_bresenhem *a);
 void			draw_last_line(t_mapinfo *map, int i);
 void			draw_all_lines(t_mapinfo *map);
-void			bresenhem_p2(t_mapinfo *map, t_bresenhem *a);
-void			bresenhem_p1(t_mapinfo *map, t_bresenhem *a);
 void			help_keys(int keycode, t_mapinfo *map);
 void			wasd_keys(int keycode, t_mapinfo *map);
 void			arrow_keys(int keycode, t_mapinfo *map);

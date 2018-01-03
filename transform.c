@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:42:15 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/02 19:32:12 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 22:58:54 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	transform(t_mapinfo *map)
 			map->vec[i * map->values + j].w = 1;
 			j++;
 		}
+		//free(map->numbers[i]);
 		i++;
 	}
+	//free(map->numbers);
 }
 
 void	continue_of_lenth_of_z(t_mapinfo *map)

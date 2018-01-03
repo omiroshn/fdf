@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/03 22:45:40 by omiroshn          #+#    #+#             */
+/*   Updated: 2018/01/03 23:03:12 by omiroshn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 static int	is_inbase(char c, int base)
@@ -20,7 +32,7 @@ static int	is_inbase(char c, int base)
 static int	is_delimiter(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' ||
-		c == '\f'|| c == '\r'|| c == '\v')
+		c == '\f' || c == '\r' || c == '\v')
 		return (1);
 	return (0);
 }

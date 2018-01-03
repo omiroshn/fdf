@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/02 20:54:41 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/03 23:04:34 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init(t_mapinfo *map)
 void	init_perspective_projection(t_persp_proj *proj)
 {
 	proj->n = 0.01;
-	proj->f = 100; 
+	proj->f = 100;
 	proj->angle_of_view = 60;
 	proj->image_aspect_ratio = HEIGHT / WIDTH;
 	proj->scale = tan(proj->angle_of_view * 0.5 * M_PI / 180) * proj->n;
@@ -40,24 +40,6 @@ void	init_perspective_projection(t_persp_proj *proj)
 	proj->t = proj->scale;
 	proj->r = proj->image_aspect_ratio * proj->scale;
 	proj->l = proj->r * -1;
-}
-
-void	init_bresenh1(t_bresenhem *a)
-{
-	a->d = (a->disty << 1) - a->distx;
-	a->d1 = a->disty << 1;
-	a->d2 = (a->disty - a->distx) << 1;
-	a->x = a->x0 + a->sx;
-	a->y = a->y0;
-}
-
-void	init_bresenh2(t_bresenhem *a)
-{
-	a->d = (a->distx << 1) - a->disty;
-	a->d1 = a->distx << 1;
-	a->d2 = (a->distx - a->disty) << 1;
-	a->y = a->y0 + a->sy;
-	a->x = a->x0;
 }
 
 int		exit_func(void *param)
