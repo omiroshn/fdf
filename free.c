@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 01:11:09 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 16:38:37 by omiroshn         ###   ########.fr       */
+/*   Created: 2018/01/04 16:52:51 by omiroshn          #+#    #+#             */
+/*   Updated: 2018/01/04 17:16:45 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	put_error(char *str)
+void	free_strsplit(char **str)
 {
-	ft_putendl(str);
-	exit(-1);
-}
+	int i;
 
-int		exit_func(void *param)
-{
-	param = NULL;
-	exit(1);
-	return (0);
+	i = 0;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

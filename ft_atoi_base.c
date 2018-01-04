@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/03 22:45:40 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/03 23:03:12 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:13:02 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int			ft_atoi_base(char *str, int base)
 	int value;
 	int minus;
 
+	if (str == NULL)
+		return (16777215);
 	value = 0;
 	if (base <= 1 || base > 36)
 		return (0);

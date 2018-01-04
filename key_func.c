@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 05:13:49 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 00:38:24 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/04 15:55:59 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	arrow_keys(int keycode, t_mapinfo *map)
 
 	str = "";
 	if (keycode == MAC_ESC_BUT)
-		exit(0);
+		exit_func(map);
 	else if (keycode == MAC_ARROW_RIGHT && (str = "right"))
 		map->angle_y += 0.1;
 	else if (keycode == MAC_ARROW_LEFT && (str = "left"))
