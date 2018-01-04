@@ -13,8 +13,8 @@
 #ifndef HEADER_H
 # define HEADER_H
 
-# define WIDTH 600
-# define HEIGHT 600
+# define WIDTH 800
+# define HEIGHT 800
 # define DWA_PI 2 * 3.141592
 # define PI 3.141592
 # define PI_2 3.141592 / 2
@@ -159,6 +159,7 @@ typedef	struct	s_mapinfo
 	int			turned_on;
 }				t_mapinfo;
 
+int				ft_lerpi(int first, int second, double p);
 void			put_error(char *str);
 void			read_color(t_mapinfo *map);
 int				ft_atoi_base(char *str, int base);

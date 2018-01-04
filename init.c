@@ -21,7 +21,7 @@ void	init(t_mapinfo *map)
 	map->angle_z = 0;
 	map->lines = 0;
 	map->values = 0;
-	map->scale = 1;
+	map->scale = 0.3 * (HEIGHT + WIDTH) / 20;
 	map->offset_x = 0;
 	map->offset_y = 0;
 	map->offset_z = 1;

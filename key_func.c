@@ -17,19 +17,19 @@ void	arrow_keys(int keycode, t_mapinfo *map)
 	char *str;
 
 	str = "";
-	if (keycode == MAC_ESC_BUT)
+	if (keycode == LINUX_ESC_BUT)
 		exit(0);
-	else if (keycode == MAC_ARROW_RIGHT && (str = "right"))
+	else if (keycode == LINUX_ARROW_RIGHT && (str = "right"))
 		map->angle_y += 0.1;
-	else if (keycode == MAC_ARROW_LEFT && (str = "left"))
+	else if (keycode == LINUX_ARROW_LEFT && (str = "left"))
 		map->angle_y -= 0.1;
-	else if (keycode == MAC_ARROW_UP && (str = "up"))
+	else if (keycode == LINUX_ARROW_UP && (str = "up"))
 		map->angle_x += 0.1;
-	else if (keycode == MAC_ARROW_DOWN && (str = "down"))
+	else if (keycode == LINUX_ARROW_DOWN && (str = "down"))
 		map->angle_x -= 0.1;
-	else if (keycode == MAC_BUT_1 && (str = "z-left"))
+	else if (keycode == LINUX_BUT_1 && (str = "z-left"))
 		map->angle_z -= 0.1;
-	else if (keycode == MAC_BUT_2 && (str = "z-right"))
+	else if (keycode == LINUX_BUT_2 && (str = "z-right"))
 		map->angle_z += 0.1;
 	mlx_string_put(map->mlx, map->win, 90, 10, 0xFFFFFF, str);
 }
@@ -40,19 +40,19 @@ void	wasd_keys(int keycode, t_mapinfo *map)
 
 	str = "";
 	map->speed = 10;
-	if (keycode == MAC_BUT_W && (str = "W"))
+	if (keycode == LINUX_BUT_W && (str = "W"))
 		map->offset_y -= map->speed;
-	else if (keycode == MAC_BUT_S && (str = "S"))
+	else if (keycode == LINUX_BUT_S && (str = "S"))
 		map->offset_y += map->speed;
-	else if (keycode == MAC_BUT_A && (str = "A"))
+	else if (keycode == LINUX_BUT_A && (str = "A"))
 		map->offset_x -= map->speed;
-	else if (keycode == MAC_BUT_D && (str = "D"))
+	else if (keycode == LINUX_BUT_D && (str = "D"))
 		map->offset_x += map->speed;
-	else if (keycode == MAC_BUT_MINUS && (str = "-") && map->scale > 1)
+	else if (keycode == LINUX_BUT_MINUS && (str = "-") && map->scale > 1)
 		map->scale -= 2;
-	else if (keycode == MAC_BUT_PLUS && (str = "+"))
+	else if (keycode == LINUX_BUT_PLUS && (str = "+"))
 		map->scale += 2;
-	else if (keycode == MAC_BUT_P && (str = "P"))
+	else if (keycode == LINUX_BUT_P && (str = "P"))
 		map->turned_on *= -1;
 	mlx_string_put(map->mlx, map->win, 90, 10, 0xFFFFFF, str);
 }
@@ -62,7 +62,7 @@ void	help_keys(int keycode, t_mapinfo *map)
 	char	*str;
 
 	str = "";
-	if (keycode == MAC_QUEST_BUT && (str = "?"))
+	if (keycode == LINUX_QUEST_BUT && (str = "?"))
 	{
 		mlx_clear_window(map->mlx, map->win);
 		mlx_string_put(map->mlx, map->win, 90, 10, 0xFFFFFF, str);
@@ -86,9 +86,9 @@ void	zx_keys(int keycode, t_mapinfo *map)
 
 	str = "";
 	i = 0;
-	if (keycode == MAC_BUT_X && (str = "X"))
+	if (keycode == LINUX_BUT_X && (str = "X"))
 		map->offset_z += 1;
-	else if (keycode == MAC_BUT_Z && (str = "Z"))
+	else if (keycode == LINUX_BUT_Z && (str = "Z"))
 		map->offset_z -= 1;
 	mlx_string_put(map->mlx, map->win, 90, 10, 0xFFFFFF, str);
 }
@@ -104,7 +104,7 @@ int		key_function(int keycode, void *param)
 	help_keys(keycode, map);
 	zx_keys(keycode, map);
 	draw(map);
-	if (keycode != MAC_QUEST_BUT)
+	if (keycode != LINUX_QUEST_BUT)
 		mlx_string_put(map->mlx, map->win, 10, HEIGHT - 25,
 			0xCCCCCC, "? for help");
 	mlx_string_put(map->mlx, map->win, 10, 10, 0xCCCCCC, "button:");
