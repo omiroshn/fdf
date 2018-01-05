@@ -6,15 +6,15 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 17:32:51 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/05 16:39:38 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 1280
+# define HEIGHT 1280
 # define DWA_PI 2 * 3.141592
 # define PI 3.141592
 # define PI_2 3.141592 / 2
@@ -145,15 +145,11 @@ typedef	struct	s_mapinfo
 	float		offset_z;
 }				t_mapinfo;
 
-<<<<<<< HEAD
-int				ft_lerpi(int first, int second, double p);
-=======
-
+void			init_vec_axis(t_mapinfo *map);
 int				exit_func(void *param);
 int				ft_atoi_base(char *str, int base);
 int				key_function(int keycode, void *param);
 void			free_strsplit(char **color);
->>>>>>> origin/master
 void			put_error(char *str);
 void			read_color(t_mapinfo *map);
 void			init_perspective_projection(t_persp_proj *proj);

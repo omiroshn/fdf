@@ -6,13 +6,13 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 05:14:36 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 17:27:54 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/05 17:18:27 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_matrix4	perspective_projection()
+t_matrix4	perspective_projection(void)
 {
 	t_matrix4		rhs;
 	t_persp_proj	proj;

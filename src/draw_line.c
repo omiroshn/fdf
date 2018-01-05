@@ -6,20 +6,20 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 06:37:48 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 20:04:09 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/05 17:01:08 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		ft_lerpi(int first, int second, double p)
+static inline int		ft_lerpi(int first, int second, double p)
 {
 	if (first == second)
 		return (first);
 	return ((int)((double)first + (second - first) * p));
 }
 
-int		clerp(int c1, int c2, double p)
+static inline int		clerp(int c1, int c2, double p)
 {
 	int r;
 	int g;
@@ -33,7 +33,7 @@ int		clerp(int c1, int c2, double p)
 	return (r << 16 | g << 8 | b);
 }
 
-double	ft_ilerp(double val, double first, double second)
+static inline double	ft_ilerp(double val, double first, double second)
 {
 	if (val == first)
 		return (0.0);
@@ -42,14 +42,17 @@ double	ft_ilerp(double val, double first, double second)
 	return ((val - first) / (second - first));
 }
 
-void	line_process(t_mapinfo *map, t_bresenhem *a, t_vec *vec1, t_vec *vec2)
+static inline int		line_process(t_mapinfo *map,
+	t_bresenhem *a, t_vec *vec1, t_vec *vec2)
 {
 	double percent;
 
 	percent = (a->distx > a->disty ?
 			ft_ilerp(a->x0, a->start.x, a->stop.x)
 			: ft_ilerp(a->y0, a->start.y, a->start.y));
-	mlx_pixel_put(map->mlx, map->win, a->x0 + WIDTH / 2,
+	if (a->x0 + WIDTH / 2 >= 0 && a->x0 + WIDTH / 2 <= WIDTH
+		&& a->y0 + HEIGHT / 2 >= 0 && a->y0 + HEIGHT / 2 <= HEIGHT)
+		mlx_pixel_put(map->mlx, map->win, a->x0 + WIDTH / 2,
 			a->y0 + HEIGHT / 2, clerp(vec1->color, vec2->color, percent));
 	a->err2 = 2 * a->err;
 	if (a->err2 >= a->disty)
@@ -62,9 +65,10 @@ void	line_process(t_mapinfo *map, t_bresenhem *a, t_vec *vec1, t_vec *vec2)
 		a->err += a->distx;
 		a->y0 += a->sy;
 	}
+	return (0);
 }
 
-void	draw_line(t_mapinfo *map, t_vec vec1, t_vec vec2)
+void					draw_line(t_mapinfo *map, t_vec vec1, t_vec vec2)
 {
 	t_bresenhem		a;
 
@@ -80,5 +84,6 @@ void	draw_line(t_mapinfo *map, t_vec vec1, t_vec vec2)
 	a.sy = a.y0 < a.y1 ? 1 : -1;
 	a.err = a.distx + a.disty;
 	while (a.x0 != a.x1 || a.y0 != a.y1)
-		line_process(map, &a, &vec1, &vec2);
+		if (line_process(map, &a, &vec1, &vec2))
+			break ;
 }

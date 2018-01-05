@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 16:38:28 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/05 16:47:00 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	init(t_mapinfo *map)
 {
 	map->mlx = mlx_init();
 	map->win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "omiroshn's fdf");
-	map->angle_x = 0;
-	map->angle_y = 0;
+	map->angle_x = 0.3;
+	map->angle_y = 0.3;
 	map->angle_z = 0;
 	map->lines = 0;
 	map->values = 0;
-	map->scale = 0.3 * (HEIGHT + WIDTH) / 20;
+	map->scale = 1;
 	map->offset_x = 0;
 	map->offset_y = 0;
 	map->offset_z = 1;

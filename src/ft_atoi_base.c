@@ -6,17 +6,30 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/03 22:45:40 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 20:37:20 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/05 17:01:21 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		ft_isupper(int c)
+int			ft_isupper(int c)
 {
 	if (c >= 65 && c <= 90)
 		return (1);
 	return (0);
+}
+
+int			check_characters(char *str, int value, int base)
+{
+	if (*str - 'A' >= 0 && ft_isupper(*str) == 1)
+		value = value * base + (*str - 'A' + 10);
+	else if (*str - 'A' < 0 && ft_isupper(*str) == 1)
+		value = value * base + (*str - '0');
+	else if (*str - 'a' >= 0 && ft_isupper(*str) == 0)
+		value = value * base + (*str - 'a' + 10);
+	else if (*str - 'a' < 0 && ft_isupper(*str) == 0)
+		value = value * base + (*str - '0');
+	return (value);
 }
 
 static int	is_inbase(char c, int base)
@@ -63,14 +76,7 @@ int			ft_atoi_base(char *str, int base)
 		str++;
 	while (is_inbase(*str, base))
 	{
-		if (*str - 'A' >= 0 && ft_isupper(*str) == 1)
-			value = value * base + (*str - 'A' + 10);
-		else if (*str - 'A' < 0 && ft_isupper(*str) == 1)
-			value = value * base + (*str - '0');
-		else if (*str - 'a' >= 0 && ft_isupper(*str) == 0)
-			value = value * base + (*str - 'a' + 10);
-		else if (*str - 'a' < 0 && ft_isupper(*str) == 0)
-			value = value * base + (*str - '0');
+		value = check_characters(str, value, base);
 		str++;
 	}
 	return (value * minus);
