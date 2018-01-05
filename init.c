@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 21:41:35 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/03 23:04:34 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/04 16:38:28 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,4 @@ void	init_perspective_projection(t_persp_proj *proj)
 	proj->t = proj->scale;
 	proj->r = proj->image_aspect_ratio * proj->scale;
 	proj->l = proj->r * -1;
-}
-
-int		exit_func(void *param)
-{
-	param = NULL;
-	exit(1);
-	return (0);
 }

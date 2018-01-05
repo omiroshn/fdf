@@ -6,7 +6,7 @@
 /*   By: omiroshn <omiroshn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 21:27:42 by omiroshn          #+#    #+#             */
-/*   Updated: 2018/01/04 01:13:10 by omiroshn         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:32:51 by omiroshn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,6 @@
 # include <mlx.h>
 
 /*
-** ⬆️ 126
-** ⬇️ 125
-** ▶️ 124
-** ◀️ 123
-** 1  18
-** 2  19
-** ESC 53
-**
 ** math
 ** open
 ** read
@@ -121,33 +113,29 @@ typedef struct	s_bresenhem
 	int		y0;
 	int		x1;
 	int		y1;
-	int		distx;
-	int		disty;
 	int		sx;
 	int		sy;
-	int		d;
-	int		d1;
-	int		d2;
-	int		x;
-	int		y;
+	int		distx;
+	int		disty;
 }				t_bresenhem;
 
 typedef	struct	s_mapinfo
 {
-	void		*mlx;
-	void		*win;
-	t_vec		*vec;
-	t_vec		*vec_ch;
+	int			speed;
+	int			turned_on;
 	int			lines;
 	int			values;
-	int			color_values;
 	int			quantity;
 	int			**numbers;
 	int			min_len_z;
 	int			max_len_z;
+	void		*mlx;
+	void		*win;
 	char		**map;
 	char		**color;
 	char		*lol;
+	t_vec		*vec;
+	t_vec		*vec_ch;
 	float		angle_x;
 	float		angle_y;
 	float		angle_z;
@@ -155,26 +143,21 @@ typedef	struct	s_mapinfo
 	float		offset_x;
 	float		offset_y;
 	float		offset_z;
-	int			speed;
-	int			turned_on;
 }				t_mapinfo;
 
+<<<<<<< HEAD
 int				ft_lerpi(int first, int second, double p);
+=======
+
+int				exit_func(void *param);
+int				ft_atoi_base(char *str, int base);
+int				key_function(int keycode, void *param);
+void			free_strsplit(char **color);
+>>>>>>> origin/master
 void			put_error(char *str);
 void			read_color(t_mapinfo *map);
-int				ft_atoi_base(char *str, int base);
-int				my_atoi_base(char *str, int base);
 void			init_perspective_projection(t_persp_proj *proj);
-void			draw_last_line(t_mapinfo *map, int i);
-void			draw_all_lines(t_mapinfo *map);
-void			help_keys(int keycode, t_mapinfo *map);
-void			wasd_keys(int keycode, t_mapinfo *map);
-void			arrow_keys(int keycode, t_mapinfo *map);
 void			draw_line(t_mapinfo *map, t_vec vec1, t_vec vec2);
-void			continue_of_lenth_of_z(t_mapinfo *map);
-void			lenth_of_z(t_mapinfo *map);
-int				exit_func(void *param);
-int				key_function(int keycode, void *param);
 void			init_center(t_mapinfo *map);
 void			init(t_mapinfo *map);
 void			draw(t_mapinfo *map);
@@ -194,6 +177,6 @@ t_matrix4		rotate_vectors_y(t_mapinfo *map);
 t_matrix4		rotate_vectors_z(t_mapinfo *map);
 t_matrix4		scale_vectors_x(t_mapinfo *map);
 t_matrix4		matrix_scale_z(t_mapinfo *map);
-t_matrix4		perspective_projection(t_mapinfo *map);
+t_matrix4		perspective_projection();
 
 #endif
