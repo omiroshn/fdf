@@ -12,6 +12,7 @@
 
 #ifndef HEADER_H
 # define HEADER_H
+# pragma pack(1)
 
 # define WIDTH 1280
 # define HEIGHT 1280
@@ -55,7 +56,7 @@
 # define LINUX_BUT_2 50
 # define LINUX_BUT_P 112
 
-# include "libft/includes/libft.h"
+# include "libft.h"
 # include <math.h>
 # include <fcntl.h>
 # include <sys/uio.h>

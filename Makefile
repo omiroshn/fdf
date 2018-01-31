@@ -29,8 +29,9 @@ LIBFT_DIR = libft/
 SRC = $(addprefix src/, $(addsuffix .c, $(FILES)))
 OBJ = $(addprefix obj/, $(addsuffix .o, $(FILES)))
 OBJ_LIST = $(addsuffix .o, $(FILES))
+HEADERS = -I./includes -I./libft/includes
 SPEED = -Ofast
-FLAGS = -Wall -Wextra -Werror -I.
+FLAGS = -Wall -Wextra -Werror
 CGFLAGS_LINUX = -lm -lmlx -lXext -lX11
 CGFLAGS_MAC = -lmlx -framework OpenGL -framework AppKit
 
@@ -41,12 +42,12 @@ all: $(NAME)
 
 $(NAME): libft/libft.a $(OBJ)
 	@echo "\033[36mLinking...\033[34m"
-	@$(CC) $(SPEED) -o $(NAME) $(OBJ) $(FLAGS) $(CGFLAGS_MAC) libft/libft.a
+	@$(CC) -o $(NAME) $(OBJ) $(FLAGS) $(SPEED) $(CGFLAGS_MAC) libft/libft.a
 	@echo "\033[32m[ ✔ ] Binary \033[1;32m$(NAME)\033[1;0m\033[32m created.\033[0m"
 libft/libft.a:
 	@make --no-print-directory -C $(LIBFT_DIR)
 obj/%.o: src/%.c
-	@$(CC) -c $^ -o $@ $(DEBUG) $(FLAGS)
+	@$(CC) -o $@ $(FLAGS) $(HEADERS) -c $^
 	@echo "\033[37mCompilation of \033[97m$(notdir $<) \033[0m\033[37mdone. \033[0m"
 clean:
 	@rm -rf $(OBJ)
