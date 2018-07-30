@@ -1,12 +1,13 @@
 
-# fdf
+# FDF
 
 ### Description
 
 As an introduction to graphic applications: open a window and draw! With this project, you'll explore the principles of user interface programming through a 3D "wireframe" representation of a surface. Rasterize!
 
--<img align="center"  src="https://github.com/omiroshn/fdf/blob/master/Image/42.png" width="100%" />-
--<img align="center"  src="https://github.com/omiroshn/fdf/blob/master/Image/julia.png" width="100%" />-
+<img align="center"  src="https://github.com/omiroshn/fdf/blob/master/Image/42.png" width="100%" />
+<img align="center"  src="https://github.com/omiroshn/fdf/blob/master/Image/julia.png" width="100%" />
+
 #                        **  Message to 42 students  **
 You are free to copy, modify and share under your name my exercises. But you
 will learn nothing, or will have the impression to understand without be able
