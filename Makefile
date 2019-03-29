@@ -33,7 +33,7 @@ HEADERS = -I./includes -I./libft/includes
 SPEED = -Ofast
 FLAGS = -Wall -Wextra -Werror
 CGFLAGS_LINUX = -lm -lmlx -lXext -lX11
-CGFLAGS_MAC = -lmlx -framework OpenGL -framework AppKit
+CGFLAGS_MAC = -I /Library/Developer/CommandLineTools/usr/include/ -g -L /Library/Developer/CommandLineTools/usr/lib/ -lm -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 

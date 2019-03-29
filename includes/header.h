@@ -12,7 +12,6 @@
 
 #ifndef HEADER_H
 # define HEADER_H
-# pragma pack(1)
 
 # define WIDTH 1280
 # define HEIGHT 1280
